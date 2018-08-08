@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-hant"  ng-app="page" scroll>
+<head>
+	<meta charset="UTF-8">
+	<title>貧窮人的台北</title>
+	<link rel="stylesheet" href="css/skeleton.css">
+	<link rel="stylesheet" href="css/style.css">
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.angularjs.org/snapshot/angular.min.js"></script>
+    <script src="https://code.angularjs.org/snapshot/angular-sanitize.min.js"></script>
+    <script src="https://code.angularjs.org/snapshot/angular-animate.min.js"></script>
+<!--    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.js"></script>-->
+    <script src="https://cdn.rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
+    <meta name="description" content="這是一個希望消除貧窮的聯合倡議行動，透過看見、聆聽、體驗、團結，有系統的認識貧窮，一起解決貧窮的問題而不是解決貧窮的人。"/>
+	<meta property="og:url" content="https://doyouaflavor.github.io/inadequate2017/" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title" content="貧窮人的台北" />
+    <meta property="og:description" content="這是一個希望消除貧窮的聯合倡議行動，透過看見、聆聽、體驗、團結，有系統的認識貧窮，一起解決貧窮的問題而不是解決貧窮的人。" />
+    <meta property="og:image"  content="https://doyouaflavor.github.io/inadequate2017/img/banner-03.jpg" />
+    <meta property="fb:app_id"  content="144111119374573" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50648405-17', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body  ng-controller="MgCtrl as ctl">
+
+
+<header style="background-image: url(img/bg-01.jpg);background-position-y: {{header_bg_top}}px;">
+<div class="header-word"><img src="img/word.png" alt=""></div>
+  <a scroll-on-click href="#intro"><div class="arrow-symbol" scroll-to-item scroll-to="#intro"></div></a>
+</header>
+<main>
+<div id="intro" class="section intro-section" ng-bind-html="intro">
+
+  
+</div>
+<div id="article" class="section article-section" ng-bind-html="article">
+
+</div>
+<div class="cta-section section">
+   <a ng-repeat="cta_item in cta" class="cta" target="_blank" href="{{cta_item.url}}" ng-click="clickGA('cta:'+cta_item.url)">{{cta_item.title}}</a>
+  </div>
+<div class="section action-section">
+   <div ng-repeat="item in actions" ng-if="$index > 0" id="action-section-{{$index}}">
+     <div ng-click="toggleAction($index)" class="action-title">
+       <div class="action-title-info-wrapper">
+        <div class="action-title-info">
+          <img class="action-image-word" src="{{item.word_image}}" alt="">
+          <br/>
+           <span class="action-subtitle">{{item.subtitle}}</span>
+        </div>
+       </div>
+       <div class="action-image-picture-wrapper">
+         <img src="{{item.img}}" alt="">
+       </div>
+       <div ng-class="{'arrow-symbol':true , 'reverse': showAction[$index]}"></div>
+     </div>
+     <div class="action-content-wrapper accordian" ng-show="showAction[$index]">
+       <div ng-bind-html="item.content" class="action-content"></div>
+       <div class="action-cta-wrapper" ng-if="item.url">
+         <a href="{{item.url}}" class="cta action-cta" ng-click="clickGA('action:'+item.url)">{{item.url_title}}</a>
+       </div>
+       <a href="javascript:void(0)" ng-click="toggleAction($index)"><div class="arrow-symbol reverse"></div></a>
+     </div>
+   </div>
+</div>
+<div class="media-section section">
+ <h2>媒體報導</h2>
+  <div class="media-content-wrapper" ng-repeat="item in news" >
+  <a target="_blank" href="{{item.url}}" ng-click="clickGA('media:'+item.url)">
+  <div class="media-content" style="background-image: url('{{item.img}}');background-size: cover;">
+   
+    <div class="media-info">
+      <h3>{{item.title}}</h3>
+      <div class="media-source" ng-if="item.source">{{item.author}} @ {{item.source}}</div>
+    </div>
+   </div>
+   </a>
+ </div>
+</div>
+  <div class="cta-section section">
+   <a ng-repeat="cta_item in cta" class="cta" target="_blank" href="{{cta_item.url}}" ng-click="clickGA('cta:'+cta_item.url)">{{cta_item.title}}</a>
+  </div>
+
+ <div class="group-content section" ng-bind-html="group">
+   
+ </div>
+</main>
+<footer>
+    Copyright © 2017 向貧窮學習行動聯盟
+</footer>
+
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
