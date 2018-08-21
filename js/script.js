@@ -24,6 +24,7 @@ var app = angular.module("page", ['ngSanitize','ngAnimate']).config(function($sc
 app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
 
   doRouter = function($scope){
+    console.log($scope);
     if(typeof window.cardID != 'undefined'){
       $scope.cardID = cardID;
       if( !$scope.myData ){
@@ -155,14 +156,93 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
   }
 
   setContent = function($scope){
+    // Set Custom Fields
+    $scope.customFields = [];
+    $scope.myData.customFields.forEach(function(item){
+      $scope.customFields[item.id] = item;
+    });
+
+    $scope.lists = [];
+    $scope.myData.lists.forEach(function(list){
+      if(list.name == '系列活動'){
+        $scope.lists[list.id] = '系列活動';
+        return ;
+      }
+      if(list.name == '紀念商品'){
+        $scope.lists[list.id] = '紀念商品';
+        return;
+      }
+      if(list.name == '合作團隊'){
+        $scope.lists[list.id] = '合作團隊';
+        return;
+      }
+    });
+
+    $scope.actions = [];
+    $scope.products = [];
+    $scope.members = [];
+
+
     var converter = new showdown.Converter();
     $scope.myData.cards.forEach(function(item){
+      item.customFieldItems.forEach(function(customFieldItem){
+        if(customFieldItem.value){
+          var customField = $scope.customFields[customFieldItem.idCustomField]
+          item[customField.name] = customFieldItem.value[customField.type];
+        }
+      });
+
       if(item.shortLink == 'HwVoEn1V'){
         $scope.intro = $sce.trustAsHtml(converter.makeHtml(item.desc));
+        return ;
       }
       if(item.shortLink == 'ppDzNkqx'){
         $scope.article = $sce.trustAsHtml(converter.makeHtml(item.desc));
+        return ;
       }
+      if(item.closed){
+        return;
+      }
+      if($scope.lists[item.idList] == '系列活動'){
+        if(item.StartDate){
+          dateText = '';
+          var actionDate = new Date(item.StartDate);
+          var month = actionDate.getMonth();
+          if(month == 8){
+            dateText+= 'Sep';
+          }
+          if(month == 9){
+            dateText+= 'Oct';
+          }
+          if(month == 10){
+            dateText+= 'Nov';
+          }
+          dateText+= ' ' + actionDate.getDate();
+          item.actionDate = dateText;
+        }
+        item.content = $sce.trustAsHtml(converter.makeHtml(item.desc));
+        $scope.actions.push(item);
+        return;
+      }
+      if($scope.lists[item.idList] == '紀念商品'){
+        var attachment = item.attachments.filter(function(i){return i.isUpload})[0];
+        if(attachment.url){
+          item.img = attachment.url;
+        }
+        item.description = $sce.trustAsHtml(converter.makeHtml(item.desc));
+        $scope.products.push(item);
+        return;
+      }
+      if($scope.lists[item.idList] == '合作團隊'){
+        var attachment = item.attachments.filter(function(i){return i.isUpload})[0];
+
+        if(attachment){
+          item.img = attachment.url;
+        }
+        $scope.members.push(item);
+        return;
+      }
+/*
       if(item.shortLink == 'hYtEZvle'){
         $scope.group = $sce.trustAsHtml(converter.makeHtml(item.desc));
       }
@@ -220,7 +300,25 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
         })
         $scope.news.push(news);
       }
+      */
     });
+
+    $scope.actions.sort(function(x,y){
+      if(!x.StartDate || !y.StartDate)return;
+      var xd = new Date(x.StartDate);
+      var yd = new Date(y.StartDate);
+      return xd.getTime() - yd.getTime();
+    });
+
+    $scope.members.sort(function(x,y){
+      return x.pos - y.pos;
+    });
+
+    console.log($scope.members);
+
+
+    console.log($scope.myData);
+    console.log($scope);
   };
 
   doUpdateFromCardJson = function(){
@@ -244,7 +342,8 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
       });
   }
 
-  $scope.toggleAction =function(i){
+  $scope.toggleAction = function(i, e){
+    e.preventDefault();
     var ms = 500;
     if(!$scope.showAction){
       $scope.showAction = [0,0,0,0,0];

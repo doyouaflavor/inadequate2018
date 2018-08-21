@@ -34,9 +34,18 @@
 <body  ng-controller="MgCtrl as ctl">
 
 
-<header style="background-image: url(img/bg-01.jpg);background-position-y: {{header_bg_top}}px;">
-<div class="header-word"><img src="img/word.png" alt=""></div>
-  <a scroll-on-click href="#intro"><div class="arrow-symbol" scroll-to-item scroll-to="#intro"></div></a>
+<header style="background-position-y: {{header_bg_top}}px;">
+  <div class="header-text-block">
+    <div class="header-line header-line-left"><img src="img/main_bar_left.png" alt=""></div>
+    <div class="header-text">凌晨四點，你未看過的台北　和台北人</div>
+    <div class="header-line header-line-right"><img src="img/main_bar_right.png" alt=""></div>
+  </div>
+  <div class="header-img-block">
+    <div class="header-word"><img src="img/main_type.png" alt=""></div>
+    <div class="header-person"><img src="img/main_people.png" alt=""></div>
+    <div class="header-4am"><img src="img/main_4am.png" alt=""></div>    
+  </div>
+  
 </header>
 <main>
 <div id="intro" class="section intro-section" ng-bind-html="intro">
@@ -46,57 +55,66 @@
 <div id="article" class="section article-section" ng-bind-html="article">
 
 </div>
-<div class="cta-section section">
-   <a ng-repeat="cta_item in cta" class="cta" target="_blank" href="{{cta_item.url}}" ng-click="clickGA('cta:'+cta_item.url)">{{cta_item.title}}</a>
-  </div>
 <div class="section action-section">
-   <div ng-repeat="item in actions" ng-if="$index > 0" id="action-section-{{$index}}">
-     <div ng-click="toggleAction($index)" class="action-title">
-       <div class="action-title-info-wrapper">
-        <div class="action-title-info">
-          <img class="action-image-word" src="{{item.word_image}}" alt="">
-          <br/>
-           <span class="action-subtitle">{{item.subtitle}}</span>
+  <div class="action-section-inner">
+    <h2>系列活動</h2>
+     <div ng-repeat="item in actions" id="action-section-{{$index}}" class="action-item">
+       <div ng-click="toggleAction($index, $event)">
+         <div class="action-title-info-wrapper">
+          <h3 class="action-title-info">
+            <span class="action-date">{{item.actionDate}}</span>
+            <span class="action-title">{{item.name}}</span>
+          </h3>
+         </div>
+       </div>
+       <div class="action-content-wrapper accordian" ng-show="showAction[$index]">
+         <div ng-bind-html="item.content" class="action-content"></div>
+         <div class="action-cta-wrapper" ng-if="item.link">
+           <a href="{{item.link}}" class="cta action-cta" ng-click="clickGA('action:'+item.name)">手刀前往</a>
+         </div>
+         <a href="#" ng-click="toggleAction($index, $event)"><div class="arrow-symbol reverse"></div></a>
+       </div>
+     </div>
+ </div>
+</div>
+<div class="product-section section">
+  <h2>紀念商品</h2>
+  <div class="product-content-wrapper">
+    <div class="product-item" ng-repeat="item in products" >
+      <a target="_blank" href="{{item.link}}" ng-click="clickGA('product:'+item.name)">
+        <div class="product-content">
+          <div class="product-label">紀念商品</div>
+          <div class="product-dollar">NT. {{item.dollar}}</div>
+          <h3>{{item.name}}</h3>
+          <div ng-bind-html="item.description" class="product-description"></div>
+          <div class="product-img-wrapper">
+            <img src="{{item.img}}" alt="{{item.name}}" class="product-img">
+          </div>
         </div>
-       </div>
-       <div class="action-image-picture-wrapper">
-         <img src="{{item.img}}" alt="">
-       </div>
-       <div ng-class="{'arrow-symbol':true , 'reverse': showAction[$index]}"></div>
-     </div>
-     <div class="action-content-wrapper accordian" ng-show="showAction[$index]">
-       <div ng-bind-html="item.content" class="action-content"></div>
-       <div class="action-cta-wrapper" ng-if="item.url">
-         <a href="{{item.url}}" class="cta action-cta" ng-click="clickGA('action:'+item.url)">{{item.url_title}}</a>
-       </div>
-       <a href="javascript:void(0)" ng-click="toggleAction($index)"><div class="arrow-symbol reverse"></div></a>
-     </div>
-   </div>
-</div>
-<div class="media-section section">
- <h2>媒體報導</h2>
-  <div class="media-content-wrapper" ng-repeat="item in news" >
-  <a target="_blank" href="{{item.url}}" ng-click="clickGA('media:'+item.url)">
-  <div class="media-content" style="background-image: url('{{item.img}}');background-size: cover;">
-   
-    <div class="media-info">
-      <h3>{{item.title}}</h3>
-      <div class="media-source" ng-if="item.source">{{item.author}} @ {{item.source}}</div>
+      </a>
     </div>
-   </div>
-   </a>
- </div>
-</div>
-  <div class="cta-section section">
-   <a ng-repeat="cta_item in cta" class="cta" target="_blank" href="{{cta_item.url}}" ng-click="clickGA('cta:'+cta_item.url)">{{cta_item.title}}</a>
   </div>
+</div>
 
- <div class="group-content section" ng-bind-html="group">
-   
- </div>
+<div class="member-section section">
+  <h2>合作團隊</h2>
+  <div class="member-content-wrapper">
+    <div class="member-item" ng-repeat="item in members" >
+      <div class="member-content">
+        <div ng-if="item.img">
+          <a target="_blank" href="{{item.link}}" ng-click="clickGA('member:'+item.name)"><img src="{{item.img}}" alt="{{item.name}}" class="member-img"></a>
+        </div>
+        <div ng-if="!item.img">
+          <h3>{{item.name}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </main>
 <footer>
-    Copyright © 2017 向貧窮學習行動聯盟
+    Copyright © 2018 向貧窮學習行動聯盟
 </footer>
 
 
