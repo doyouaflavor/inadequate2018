@@ -229,11 +229,7 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
         return;
       }
       if($scope.lists[item.idList] == '合作團隊'){
-        var attachment = item.attachments.filter(function(i){return i.isUpload})[0];
-
-        // if(attachment){
-        //   item.img = attachment.url;
-        // }
+        item.content = $sce.trustAsHtml(converter.makeHtml(item.desc));
         $scope.members.push(item);
         return;
       }

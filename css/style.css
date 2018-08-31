@@ -1,8 +1,9 @@
 /*@import url(//fonts.googleapis.com/earlyaccess/cwtexhei.css);*/
-@font-face {
+/*@font-face {
     font-family: "王漢宗超明";
-    src: url(fonts/wt005.ttf);
-}
+    src: url('font/wt005.ttf') format('truetype');
+    unicode-range: U+95DC, U+65BC, U+8CA7, U+7AAE, U+4EBA, U+7684, U+53F0, U+5317;
+}*/
 *{
     font-family: Heiti TC, "微軟正黑體", Microsoft JhengHei, 'cwTeXHei', sans-serif;
     box-sizing: border-box;
@@ -10,10 +11,10 @@
 
 h1{
     font-size: 2.3em;
-    font-family: "王漢宗超明體繁";
+    font-family: "王漢宗超明";
 }
 h2 {
-    font-family: "王漢宗超明體繁";
+    font-family: "王漢宗超明";
     /*color: var(--marked-orange-color);*/
     text-align: center;
     font-size: 42px;
@@ -22,7 +23,7 @@ h2 {
     padding-bottom: 20px;
 }
 h3 {
-    font-family: "王漢宗超明體繁";
+    font-family: "王漢宗超明";
     font-size: 1.5em;
 }
 h4 {
@@ -473,8 +474,10 @@ img.action-image-word{
 }
 .member-content{
   width: 120px;
-  padding-left: 0;
   text-align: left;
+}
+.member-content ul{
+  padding-left: 0;
 }
 .member-content li{
   list-style: none;
@@ -482,7 +485,7 @@ img.action-image-word{
 .member-content li a,
 .member-content li a:link{
   color: white;
-  text-decoration: none;
+  /*text-decoration: none;*/
 }
 
 .action-cta-wrapper{

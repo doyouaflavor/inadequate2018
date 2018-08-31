@@ -112,17 +112,11 @@
 <div class="member-section section">
   <h2>合作團隊</h2>
   <div class="member-content-wrapper">
-    <ul class="member-content" ng-repeat="ul_class in members" >
-      <h3>{{ul_class.name}}</h3>
-      <li ng-repeat="li_link in ul_class.attachments">
-        <div ng-if="li_link.url">
-          <a target="_blank" href="{{li_link.url}}" ng-click="clickGA('member:'+li_link.name)">{{li_link.name}}</a>
-        </div>
-        <div ng-if="!li_link.url">
-          {{li_link.name}}
-        </div>
-      </li>
-    </ul>
+    <div class="member-content" ng-repeat="item in members" >
+      <h3>{{item.name}}</h3>
+      <div ng-bind-html="item.content"></div>
+      
+    </div>
   </div>
   <footer>
     Copyright © 2018 向貧窮學習行動聯盟
