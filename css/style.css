@@ -21,7 +21,7 @@ body{
 
 
   background-color: var(--light-bg-color);
-  color: var(--dark-tx-color);
+  color: var(--light-tx-color);
   padding: 0;
   margin: 0;
   font-size: 14px;
@@ -29,8 +29,33 @@ body{
 ::-webkit-scrollbar {
     display: none;
 }
-body>header {
-  background-image: url(../img/main_bg.png);
+.bg-video-wrapper{
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  position: -1;
+}
+.bg-video-wrapper iframe, .page-bg{
+  pointer-events: none;
+  width: 100vw;
+  height: 56.25vw;
+  max-width: none;
+  min-height: 100vh;
+  min-width: 177.77vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-size: cover;
+}
+.bg-video-wrapper iframe{
+  -webkit-filter: brightness(.7)sepia(.4);
+}
+header {
+  /*background-image: url(../img/main_bg.png);*/
   background-position-x:50%; 
   padding: 20px 0 0 0;
   width: 100%;
@@ -43,17 +68,15 @@ header{
   color: var(--light-tx-color);
   position: relative;
 }
+
+
 .header-text-block{
-  margin-top: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "新細明體", PMingLiU, serif;
 }
 .header-line{
-  /*background-image: url(../img/main_bar_left.png);*/
-  /*background-repeat: no-repeat;*/
-  /*height: 10px;*/
   width: 60px;
   margin: 0 20px;
 }
@@ -64,12 +87,30 @@ header{
 .header-text{
   font-size: 16px;
 }
+.header-text img{
+  width: 66%;
+}
+.header-4am{
+  width: 214px;
+  margin: 0 auto;
+}
+.img-wrapper>img{
+  width: 100%;
+}
+.header-word{
+  width: 234px;
+  margin: 0 auto;
+}
+
+
+/*
 .header-img-block{
   max-width: 960px;
 }
 .header-img-block{
   position: relative;
   margin: 0 auto;
+  height: 500px;
 }
 .header-img-block>div{
   position: absolute;
@@ -116,6 +157,7 @@ header{
     transform: translateX(-130px);
   }
 }
+*/
 h1{
     font-size: 2.3em;
 }
@@ -158,7 +200,7 @@ strong{
 inspired by https://codepen.io/philhoyt/pen/ujHzd
 */
 .section{
-  padding: 48px 0 48px;
+  /*padding: 48px 0 48px;*/
   text-align: center;
 }
 .section>div{
@@ -167,8 +209,8 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
 }
 
 .intro-section {
-  padding: 80px 0 20px;
-  color: var(--dark-tx-color);
+  /*padding: 80px 0 20px;
+  color: var(--dark-tx-color);*/
   position: relative;
   text-align: center;
   font-size: 1.2em;
@@ -177,7 +219,7 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
 @media screen and (min-width: 768px){
   .intro-section {
     padding-bottom: 0;
-    margin-bottom: -50px;
+    /*margin-bottom: -50px;*/
   }
 }
 
@@ -189,9 +231,8 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
 
 .article-section{
   text-align: center;
-  background: var(--dark-bg-color);
-  color: var(--light-tx-color);
-  padding: 80px 20px 48px;
+  /*color: var(--light-tx-color);*/
+  /*padding: 80px 20px 48px;*/
 }
 @media screen and (max-width: 767px){
   .article-section{
@@ -206,6 +247,23 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
   margin: 0 auto;
   font-size: 14px;
 }
+.action-section-inner{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.action-item{
+  width: 230px;
+  padding:0 10px;
+}
+.action-info{
+  border-radius: 5px;
+  background: var(--light-bg-color);
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
+}
+/*
 .action-section-inner{
   max-width: 920px;
   margin: 0 ;
@@ -244,7 +302,6 @@ h3.action-title-info{
   max-width: calc(64% - 43px);
 }
 .action-date{
-  /*display: inline-block;*/
   width: calc(36% + 23px);
   text-align: right;
 }
@@ -280,10 +337,8 @@ img.action-image-word{
 .accordian.ng-hide{
   max-height: 0;
 }
+*/
 
-.product-section{
-  background: var(--gray-bg-color);
-}
 .product-section h3{
   margin-top: 10px;
   font-weight: bolder;
@@ -291,7 +346,7 @@ img.action-image-word{
 .product-content-wrapper{
   display: flex;
   flex-wrap: wrap;
-  max-width: 850px;
+  /*max-width: 850px;*/
   text-align: left;
   justify-content: center;
 }
@@ -351,6 +406,9 @@ img.action-image-word{
   transform: translateY(-50%);
 }
 
+.member-section {
+  background: var(--dark-bg-color);
+}
 .member-section h2{
   color: var(--dark-tx-color);
   border-bottom-color: var(--dark-tx-color);

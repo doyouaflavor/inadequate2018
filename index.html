@@ -11,6 +11,8 @@
     <script src="https://code.angularjs.org/snapshot/angular-animate.min.js"></script>
 <!--    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.js"></script>-->
     <script src="https://cdn.rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.min.css" rel="stylesheet"  />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.js"></script>
     <meta name="description" content="這是一個希望消除貧窮的聯合倡議行動，透過看見、聆聽、體驗、團結，有系統的認識貧窮，一起解決貧窮的問題而不是解決貧窮的人。"/>
 	<meta property="og:url" content="https://doyouaflavor.github.io/inadequate2017/" />
     <meta property="og:type"               content="website" />
@@ -32,22 +34,23 @@
 </head>
 
 <body  ng-controller="MgCtrl as ctl">
-
-
-<header style="background-position-y: {{header_bg_top}}px;">
+<div class="bg-video-wrapper">
+  <div id="bg-video"></div>
+  <div class="page-bg" data-page="2" style="background-image: url(img/page2_bg.jpg);opacity: 0;"></div>
+  <div class="page-bg" data-page="3" style="background-image: url(img/page3_bg.jpg);opacity: 0;"></div>
+  <div class="page-bg" data-page="4" style="background-image: url(img/page4_bg.jpg);opacity: 0;"></div>
+  <div class="page-bg" data-page="5" style="background-image: url(img/page5_bg.jpg);opacity: 0;"></div>
+</div>
+<main>
+<header class="section">
+  <div class="header-4am img-wrapper"><img src="img/main_4am.png" alt=""></div>    
   <div class="header-text-block">
     <div class="header-line header-line-left"><img src="img/main_bar_left.png" alt=""></div>
-    <div class="header-text">凌晨四點，你未看過的台北　和台北人</div>
+    <div class="header-text"><img src="img/main_small-text.png" alt="凌晨四點，你未看過的台北　和台北人"></div>
     <div class="header-line header-line-right"><img src="img/main_bar_right.png" alt=""></div>
   </div>
-  <div class="header-img-block">
-    <div class="header-word"><img src="img/main_type.png" alt=""></div>
-    <div class="header-person"><img src="img/main_people.png" alt=""></div>
-    <div class="header-4am"><img src="img/main_4am.png" alt=""></div>    
-  </div>
-  
+  <div class="header-word img-wrapper"><img src="img/main_type.png" alt=""></div>
 </header>
-<main>
 <div id="intro" class="section intro-section" ng-bind-html="intro">
 
   
@@ -55,26 +58,24 @@
 <div id="article" class="section article-section" ng-bind-html="article">
 
 </div>
+<div class="section section-slide">
+  <div ng-repeat="item in slides" id="slide-section-{{$index}}" class="slide-item slide">
+    <div ng-bind-html="item.content" class="slide-content"></div>
+  </div>
+</div>
 <div class="section action-section">
+  <h2>系列活動</h2>
   <div class="action-section-inner">
-    <h2>系列活動</h2>
      <div ng-repeat="item in actions" id="action-section-{{$index}}" class="action-item">
-       <div ng-click="toggleAction($index, $event)">
-         <div class="action-title-info-wrapper">
-          <h3 class="action-title-info">
-            <span class="action-date">{{item.actionDate}}</span>
-            <span class="action-title">{{item.name}}</span>
-          </h3>
-         </div>
-       </div>
-       <div class="action-content-wrapper accordian" ng-show="showAction[$index]">
-         <div ng-bind-html="item.content" class="action-content"></div>
-         <div class="action-cta-wrapper" ng-if="item.link">
-           <a href="{{item.link}}" class="cta action-cta" ng-click="clickGA('action:'+item.name)">手刀前往</a>
-         </div>
-         <a href="#" ng-click="toggleAction($index, $event)"><div class="arrow-symbol reverse"></div></a>
-       </div>
-     </div>
+      <h3 class="action-title">{{item.name}}</h3>
+      <a href="{{item.link}}" class="action-info">
+        <img src="{{item.img}}" alt="">
+        <div class="action-title-info-wrapper">
+          <div ng-bind-html="item.content" class="action-content"></div>
+        </div>
+      </a>
+    </div>
+  </div>
  </div>
 </div>
 <div class="product-section section">
@@ -119,6 +120,7 @@
 
 
 <script src="js/script.js"></script>
+<script src="js/youtube_bg.js"></script>
 
 </body>
 </html>

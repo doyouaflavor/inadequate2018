@@ -176,11 +176,16 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
         $scope.lists[list.id] = '合作團隊';
         return;
       }
+      if(list.name == '4am介紹'){
+        $scope.lists[list.id] = '4am介紹';
+        return;
+      }
     });
 
     $scope.actions = [];
     $scope.products = [];
     $scope.members = [];
+    $scope.slides = [];
 
 
     var converter = new showdown.Converter();
@@ -196,7 +201,7 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
         $scope.intro = $sce.trustAsHtml(converter.makeHtml(item.desc));
         return ;
       }
-      if(item.shortLink == 'ppDzNkqx'){
+      if(item.shortLink == 'UGZ65SFq'){
         $scope.article = $sce.trustAsHtml(converter.makeHtml(item.desc));
         return ;
       }
@@ -204,21 +209,9 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
         return;
       }
       if($scope.lists[item.idList] == '系列活動'){
-        if(item.StartDate){
-          dateText = '';
-          var actionDate = new Date(item.StartDate);
-          var month = actionDate.getMonth();
-          if(month == 8){
-            dateText+= 'Sep';
-          }
-          if(month == 9){
-            dateText+= 'Oct';
-          }
-          if(month == 10){
-            dateText+= 'Nov';
-          }
-          dateText+= ' ' + actionDate.getDate();
-          item.actionDate = dateText;
+        var attachment = item.attachments.filter(function(i){return i.isUpload})[0];
+        if(attachment && attachment.url){
+          item.img = attachment.url;
         }
         item.content = $sce.trustAsHtml(converter.makeHtml(item.desc));
         $scope.actions.push(item);
@@ -226,9 +219,9 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
       }
       if($scope.lists[item.idList] == '紀念商品'){
         var attachment = item.attachments.filter(function(i){return i.isUpload})[0];
-        if(attachment.url){
-          item.img = attachment.url;
-        }
+        // if(attachment.url){
+        //   item.img = attachment.url;
+        // }
         item.description = $sce.trustAsHtml(converter.makeHtml(item.desc));
         $scope.products.push(item);
         return;
@@ -236,10 +229,15 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
       if($scope.lists[item.idList] == '合作團隊'){
         var attachment = item.attachments.filter(function(i){return i.isUpload})[0];
 
-        if(attachment){
-          item.img = attachment.url;
-        }
+        // if(attachment){
+        //   item.img = attachment.url;
+        // }
         $scope.members.push(item);
+        return;
+      }
+      if($scope.lists[item.idList] == '4am介紹'){
+        item.content = $sce.trustAsHtml(converter.makeHtml(item.desc));
+        $scope.slides.push(item);
         return;
       }
 /*
@@ -314,11 +312,12 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
       return x.pos - y.pos;
     });
 
-    console.log($scope.members);
-
-
     console.log($scope.myData);
     console.log($scope);
+
+    if(typeof postSetContent == 'function'){
+      postSetContent();
+    }
   };
 
   doUpdateFromCardJson = function(){
@@ -423,3 +422,28 @@ app.directive('scrollOnClick', function() {
     }
   }
 });
+
+postSetContent = function(){
+  window.interval = setInterval(function(){
+    if($('.section-slide .slide').length > 0){
+      $('main').fullpage({
+          // 參數設定[註1]
+          navigation: true, // 顯示導行列
+          navigationPosition: "right", // 導行列位置
+          onLeave: function(origin, destination, direction){
+            if($('[data-page='+destination+']').length > 0){
+              $('[data-page='+destination+']').animate({opacity: 1});
+            }
+            if($('[data-page='+origin+']').length > 0 && direction=='up'){
+              $('[data-page='+origin+']').animate({opacity: 0});
+            }
+            console.log(origin);
+            console.log(destination);
+            console.log(direction);
+          }
+        });
+      clearInterval(window.interval);
+      
+    }
+  },500);
+}
