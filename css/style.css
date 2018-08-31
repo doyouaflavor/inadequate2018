@@ -1,7 +1,49 @@
-@import url(//fonts.googleapis.com/earlyaccess/cwtexhei.css);
+/*@import url(//fonts.googleapis.com/earlyaccess/cwtexhei.css);*/
+@font-face {
+    font-family: "王漢宗超明";
+    src: url(fonts/wt005.ttf);
+}
 *{
     font-family: Heiti TC, "微軟正黑體", Microsoft JhengHei, 'cwTeXHei', sans-serif;
     box-sizing: border-box;
+}
+
+h1{
+    font-size: 2.3em;
+    font-family: "王漢宗超明體繁";
+}
+h2 {
+    font-family: "王漢宗超明體繁";
+    /*color: var(--marked-orange-color);*/
+    text-align: center;
+    font-size: 42px;
+    /*border-bottom: 1px solid var(--marked-orange-color);*/
+    display: inline-block;
+    padding-bottom: 20px;
+}
+h3 {
+    font-family: "王漢宗超明體繁";
+    font-size: 1.5em;
+}
+h4 {
+  display: inline-block;
+  font-weight:bolder;
+  margin-top: 20px;
+  font-size: 1.2em;
+  padding: 1px 10px;
+  border: 1px solid var(--light-tx-color);
+}
+h5 {
+  font-weight:bolder;
+  font-size: 1em;
+}
+blockquote {
+  margin: 0;
+}
+pre{
+  border: 1px solid var(--light-tx-color);
+  text-align: left;
+  padding: 10px;
 }
 body{
   --light-bg-color: #f8f8f8;
@@ -12,15 +54,14 @@ body{
   --light-tx-color: #eee;
    --gray-tx-color: #555;
 
-       --tag-color: #ff7b00;
-       --cta-color: #2e9aa2;
-    --marked-color: #4eceda;
+  --marked-orange-color: #ff7b00;
+  --marked-green-color: #2e9aa2;
+  --marked-blue-color: #4eceda;
 
     --box-shadow: 0 4px 2px -2px;
     --box-shadow-hover: 0 2px 6px 2px;
 
-
-  background-color: var(--light-bg-color);
+  background-color: var(--dark-bg-color);
   color: var(--light-tx-color);
   padding: 0;
   margin: 0;
@@ -50,6 +91,7 @@ body{
   left: 50%;
   transform: translate(-50%, -50%);
   background-size: cover;
+  background-position: 50% 0;
 }
 .bg-video-wrapper iframe{
   -webkit-filter: brightness(.7)sepia(.4);
@@ -158,29 +200,6 @@ header{
   }
 }
 */
-h1{
-    font-size: 2.3em;
-}
-h2 {
-    color: var(--tag-color);
-    text-align: center;
-    font-size: 1.2em;
-    border-bottom: 1px solid var(--tag-color);
-    display: inline-block;
-    padding-bottom: 5px;
-}
-h3 {
-    font-size: 1.5em;
-}
-h4 {
-  font-weight:bolder;
-  margin-top: 40px;
-  font-size: 1.2em;
-}
-h5 {
-  font-weight:bolder;
-  font-size: 1em;
-}
 header a {
     color: white;
     text-decoration: none;
@@ -193,7 +212,7 @@ body>footer{
     padding: 10px 0;
 }
 strong{
-  color: var(--tag-color);
+  color: var(--marked-orange-color);
 }
 
 /**
@@ -203,7 +222,7 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
   /*padding: 48px 0 48px;*/
   text-align: center;
 }
-.section>div{
+.section>div, .section-content, .section-inner{
   max-width: 920px;
   margin: 0 auto;
 }
@@ -217,9 +236,8 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
   font-size: 16px;
 }
 @media screen and (min-width: 768px){
-  .intro-section {
-    padding-bottom: 0;
-    /*margin-bottom: -50px;*/
+  .intro-section-content{
+    width: 540px;
   }
 }
 
@@ -229,10 +247,40 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
   }
 }
 
+.article-section-inner{
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+.article-section h2{
+  width: 100px;
+  margin: 0;
+}
+.article-section strong{
+  color: white;
+}
+.article-section h4{
+  margin: 20px 0 0 0;
+}
+.article-section-content{
+  max-width: 630px;
+  text-align: left;
+  margin: 0 0 0 50px;
+}
+.article-section .cta {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+}
+
+
+.slide-content{
+  max-width: 600px;
+}
+/*
 .article-section{
   text-align: center;
-  /*color: var(--light-tx-color);*/
-  /*padding: 80px 20px 48px;*/
 }
 @media screen and (max-width: 767px){
   .article-section{
@@ -247,10 +295,15 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
   margin: 0 auto;
   font-size: 14px;
 }
+*/
 .action-section-inner{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+.action-section h3{
+  text-align: left;
+  margin: 0;
 }
 .action-item{
   width: 230px;
@@ -289,13 +342,13 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
   border-radius: 20px;
   margin-left: 10px;
   margin-right: 10px;
-  border: 2px solid var(--marked-color);
+  border: 2px solid var(--marked-blue-color);
 }
 h3.action-title-info{
   display: flex;
 }
 .action-title-info:hover .action-title{
-  color: var(--marked-color);
+  color: var(--marked-blue-color);
   cursor: pointer;
 }
 .action-title {
@@ -384,7 +437,7 @@ img.action-image-word{
   font-size: 12px;
   display: inline;
   padding: 3px 10px;
-  background: var(--tag-color);
+  background: var(--marked-orange-color);
   position: absolute;
   right: 0;
   top: 0;
@@ -416,11 +469,22 @@ img.action-image-word{
 .member-content-wrapper{
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  justify-content: center;
 }
 .member-content{
   width: 120px;
+  padding-left: 0;
+  text-align: left;
 }
+.member-content li{
+  list-style: none;
+}
+.member-content li a,
+.member-content li a:link{
+  color: white;
+  text-decoration: none;
+}
+
 .action-cta-wrapper{
   margin-bottom: 50px;
   margin-left: 40px;
@@ -429,7 +493,7 @@ img.action-image-word{
   padding: 10px 32px;
   border-radius: 3px;
   color: white;
-  background: var(--cta-color);
+  background: var(--marked-green-color);
   transition: all linear .2s;
   box-shadow: var(--box-shadow) #ccc;
 }
@@ -450,40 +514,6 @@ main img{
     max-width: 100%;
 }
 
-/*
-inspired by https://codepen.io/palimadra/pen/lKgDd
-*/
-blockquote {
-    font-family: Georgia, serif;
-    font-size: 15px;
-    font-style: italic;
-    margin: 0.25em 0;
-    padding: 0.25em 40px;
-    line-height: 1.45;
-    position: relative;
-    color: #383838;
-}
-
-blockquote:before {
-    display: block;
-    content: "\201C";
-    font-size: 80px;
-    position: absolute;
-    left: -20px;
-    top: -20px;
-    color: #7a7a7a;
-}
-
-blockquote cite {
-    color: #999999;
-    font-size: 14px;
-    display: block;
-    margin-top: 5px;
-}
- 
-blockquote cite:before {
-    content: "\2014 \2009";
-}
 header .arrow-symbol{
   bottom: 60px;
 }
@@ -557,3 +587,9 @@ header .arrow-symbol{
 /**
   RWD End
 */
+
+
+/** overwrite */
+.fp-controlArrow{
+  z-index: 104;
+}

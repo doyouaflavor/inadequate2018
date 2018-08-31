@@ -198,11 +198,13 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
       });
 
       if(item.shortLink == 'HwVoEn1V'){
-        $scope.intro = $sce.trustAsHtml(converter.makeHtml(item.desc));
+        $scope.intro = item;
+        $scope.intro.content = $sce.trustAsHtml(converter.makeHtml(item.desc));
         return ;
       }
       if(item.shortLink == 'UGZ65SFq'){
-        $scope.article = $sce.trustAsHtml(converter.makeHtml(item.desc));
+        $scope.article = item;
+        $scope.article.content = $sce.trustAsHtml(converter.makeHtml(item.desc));
         return ;
       }
       if(item.closed){

@@ -3,8 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>貧窮人的台北</title>
-	<link rel="stylesheet" href="css/skeleton.css">
-	<link rel="stylesheet" href="css/style.css">
+	<!-- <link rel="stylesheet" href="css/skeleton.css"> -->
    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://code.angularjs.org/snapshot/angular.min.js"></script>
     <script src="https://code.angularjs.org/snapshot/angular-sanitize.min.js"></script>
@@ -13,8 +12,9 @@
     <script src="https://cdn.rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.min.css" rel="stylesheet"  />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.js"></script>
+	  <link rel="stylesheet" href="css/style.css">
     <meta name="description" content="這是一個希望消除貧窮的聯合倡議行動，透過看見、聆聽、體驗、團結，有系統的認識貧窮，一起解決貧窮的問題而不是解決貧窮的人。"/>
-	<meta property="og:url" content="https://doyouaflavor.github.io/inadequate2017/" />
+  <meta property="og:url" content="https://doyouaflavor.github.io/inadequate2017/" />
     <meta property="og:type"               content="website" />
     <meta property="og:title" content="貧窮人的台北" />
     <meta property="og:description" content="這是一個希望消除貧窮的聯合倡議行動，透過看見、聆聽、體驗、團結，有系統的認識貧窮，一起解決貧窮的問題而不是解決貧窮的人。" />
@@ -36,10 +36,10 @@
 <body  ng-controller="MgCtrl as ctl">
 <div class="bg-video-wrapper">
   <div id="bg-video"></div>
-  <div class="page-bg" data-page="2" style="background-image: url(img/page2_bg.jpg);opacity: 0;"></div>
-  <div class="page-bg" data-page="3" style="background-image: url(img/page3_bg.jpg);opacity: 0;"></div>
-  <div class="page-bg" data-page="4" style="background-image: url(img/page4_bg.jpg);opacity: 0;"></div>
-  <div class="page-bg" data-page="5" style="background-image: url(img/page5_bg.jpg);opacity: 0;"></div>
+  <div class="page-bg" data-page="2" style="background-image: url(img/sec2_bg.jpg);opacity: 0;"></div>
+  <div class="page-bg" data-page="3" style="background-image: url(img/sec3_bg.jpg);opacity: 0;"></div>
+  <div class="page-bg" data-page="4" style="background-image: url(img/sec4_bg.jpg);opacity: 0;"></div>
+  <div class="page-bg" data-page="5" style="background-image: url(img/sec5_bg.jpg);opacity: 0;"></div>
 </div>
 <main>
 <header class="section">
@@ -49,18 +49,30 @@
     <div class="header-text"><img src="img/main_small-text.png" alt="凌晨四點，你未看過的台北　和台北人"></div>
     <div class="header-line header-line-right"><img src="img/main_bar_right.png" alt=""></div>
   </div>
-  <div class="header-word img-wrapper"><img src="img/main_type.png" alt=""></div>
+  <div class="header-word img-wrapper"><img src="img/logo.png" alt=""></div>
 </header>
-<div id="intro" class="section intro-section" ng-bind-html="intro">
+<div id="intro" class="section intro-section">
+  <h2>{{intro.name}}</h2>
+  <div class="intro-section-content section-content" ng-bind-html="intro.content">
+    
+  </div>
 
-  
 </div>
-<div id="article" class="section article-section" ng-bind-html="article">
+<div id="article" class="section article-section" >
+  <div class="article-section-inner section-inner">
+    <h2>{{article.name}}</h2>
+    <div class="article-section-content section-content" ng-bind-html="article.content">
+    
+    </div>
+    <a href="{{article.link}}" class="cta">手刀購票</a>
+    
+  </div>
 
 </div>
 <div class="section section-slide">
-  <div ng-repeat="item in slides" id="slide-section-{{$index}}" class="slide-item slide">
-    <div ng-bind-html="item.content" class="slide-content"></div>
+  <div ng-repeat="item in slides" id="slide-item-{{$index}}" class="slide-item slide">
+    <h2>{{item.name}}</h2>
+    <div ng-bind-html="item.content" class="slide-content section-content"></div>
   </div>
 </div>
 <div class="section action-section">
@@ -100,23 +112,25 @@
 <div class="member-section section">
   <h2>合作團隊</h2>
   <div class="member-content-wrapper">
-    <div class="member-item" ng-repeat="item in members" >
-      <div class="member-content">
-        <div ng-if="item.img">
-          <a target="_blank" href="{{item.link}}" ng-click="clickGA('member:'+item.name)"><img src="{{item.img}}" alt="{{item.name}}" class="member-img"></a>
+    <ul class="member-content" ng-repeat="ul_class in members" >
+      <h3>{{ul_class.name}}</h3>
+      <li ng-repeat="li_link in ul_class.attachments">
+        <div ng-if="li_link.url">
+          <a target="_blank" href="{{li_link.url}}" ng-click="clickGA('member:'+li_link.name)">{{li_link.name}}</a>
         </div>
-        <div ng-if="!item.img">
-          <h3>{{item.name}}</h3>
+        <div ng-if="!li_link.url">
+          {{li_link.name}}
         </div>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
+  <footer>
+    Copyright © 2018 向貧窮學習行動聯盟
+  </footer>
 </div>
 
 </main>
-<footer>
-    Copyright © 2018 向貧窮學習行動聯盟
-</footer>
+
 
 
 <script src="js/script.js"></script>
