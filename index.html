@@ -36,20 +36,30 @@
 <body  ng-controller="MgCtrl as ctl">
 <div class="bg-video-wrapper">
   <div id="bg-video"></div>
-  <div class="page-bg" data-page="2" style="background-image: url(img/sec2_bg.jpg);opacity: 0;"></div>
-  <div class="page-bg" data-page="3" style="background-image: url(img/sec3_bg.jpg);opacity: 0;"></div>
-  <div class="page-bg" data-page="4" style="background-image: url(img/sec4_bg.jpg);opacity: 0;"></div>
-  <div class="page-bg" data-page="5" style="background-image: url(img/sec5_bg.jpg);opacity: 0;"></div>
+  <div class="page-bg" data-page="2" style="background-image: url(img/sec2_bg.jpg);opacity: 0;">
+    <img src="img/sec2_people.png" alt="" class="bg-people" id="bg-people-2">
+  </div>
+  <div class="page-bg" data-page="3" style="background-image: url(img/sec3_bg.jpg);opacity: 0;">
+    <img src="img/sec3_people.png" alt="" class="bg-people" id="bg-people-3">
+  </div>
+  <div class="page-bg" data-page="4" style="background-image: url(img/sec4_bg.jpg);opacity: 0;">
+    
+  </div>
+  <div class="page-bg" data-page="5" style="background-image: url(img/sec5_bg.jpg);opacity: 0;">
+    <img src="img/sec5_people.png" alt="" class="bg-people" id="bg-people-5">
+  </div>
 </div>
 <main>
 <header class="section">
-  <div class="header-4am img-wrapper"><img src="img/main_4am.png" alt=""></div>    
-  <div class="header-text-block">
-    <div class="header-line header-line-left"><img src="img/main_bar_left.png" alt=""></div>
-    <div class="header-text"><img src="img/main_small-text.png" alt="凌晨四點，你未看過的台北　和台北人"></div>
-    <div class="header-line header-line-right"><img src="img/main_bar_right.png" alt=""></div>
+  <div class="header-inner">
+    <div class="header-4am img-wrapper"><img src="img/main_4am.png" alt=""></div>    
+    <div class="header-text-block">
+      <div class="header-line header-line-left"><img src="img/main_bar.png" alt=""></div>
+      <div class="header-text"><img src="img/main_small-text.png" alt="凌晨四點，你未看過的台北　和台北人"></div>
+      <div class="header-line header-line-right"><img src="img/main_bar.png" alt=""></div>
+    </div>
+    <div class="header-word img-wrapper"><img src="img/logo.png" alt=""></div>
   </div>
-  <div class="header-word img-wrapper"><img src="img/logo.png" alt=""></div>
 </header>
 <div id="intro" class="section intro-section">
   <h2>{{intro.name}}</h2>
@@ -69,7 +79,7 @@
   </div>
 
 </div>
-<div class="section section-slide">
+<div class="section slide-section">
   <div ng-repeat="item in slides" id="slide-item-{{$index}}" class="slide-item slide">
     <h2>{{item.name}}</h2>
     <div ng-bind-html="item.content" class="slide-content section-content"></div>
@@ -81,6 +91,7 @@
      <div ng-repeat="item in actions" id="action-section-{{$index}}" class="action-item">
       <h3 class="action-title">{{item.name}}</h3>
       <a href="{{item.link}}" class="action-info">
+        <h4 class="action-info-title">{{item.name}}</h4>
         <img src="{{item.img}}" alt="">
         <div class="action-title-info-wrapper">
           <div ng-bind-html="item.content" class="action-content"></div>
@@ -94,25 +105,20 @@
   <h2>紀念商品</h2>
   <div class="product-content-wrapper">
     <div class="product-item" ng-repeat="item in products" >
-      <a target="_blank" href="{{item.link}}" ng-click="clickGA('product:'+item.name)">
-        <div class="product-content">
-          <div class="product-label">紀念商品</div>
-          <div class="product-dollar">NT. {{item.dollar}}</div>
-          <h3>{{item.name}}</h3>
-          <div ng-bind-html="item.description" class="product-description"></div>
-          <div class="product-img-wrapper">
-            <img src="{{item.img}}" alt="{{item.name}}" class="product-img">
-          </div>
+      <h3 class="product-title">{{item.name}}</h3>
+      <a target="_blank" href="{{item.link}}" ng-click="clickGA('product:'+item.name)" class="product-info">
+        <div class="product-img-wrapper">
+          <img src="{{item.img}}" alt="" class="product-img">
         </div>
+        <div ng-bind-html="item.description" class="product-description"></div>
       </a>
     </div>
   </div>
 </div>
 
 <div class="member-section section">
-  <h2>合作團隊</h2>
   <div class="member-content-wrapper">
-    <div class="member-content" ng-repeat="item in members" >
+    <div class="member-content"  ng-repeat="item in members" id="member-item-{{$index}}">
       <h3>{{item.name}}</h3>
       <div ng-bind-html="item.content"></div>
       

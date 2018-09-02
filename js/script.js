@@ -123,37 +123,6 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
       postSetMenu();
     }
   }
-  
-  setStaticContent = function($scope){
-    $scope.actions = [];
-    $scope.actions[1] = {
-      word_image: "https://trello-attachments.s3.amazonaws.com/59bbde47c615354494cbff80/59c60d208ce8059dfba9154a/f6592e5c01b43f1a686949a4295af020/%E7%9C%8B%E8%A6%8B.png",
-      img : 'https://trello-attachments.s3.amazonaws.com/59bbde47c615354494cbff80/59c22f00597fbf473c4cbaeb/96513ae2148a9fad9f7bddc8e358387c/%E9%BB%83%E5%AD%90%E6%98%8E_%E7%84%A1%E5%AE%B6%E8%80%85_(2)-min.jpg',
-      title : '看見',
-      subtitle : '是什麼風把你吹來了'
-      
-    }
-    $scope.actions[2] = {
-      word_image: "https://trello-attachments.s3.amazonaws.com/59bbde47c615354494cbff80/59c60d208ce8059dfba9154a/f4ab20327f3d4efe0e875e78233c0516/%E8%81%86%E8%81%BD.png",
-      img : 'https://trello-attachments.s3.amazonaws.com/59bbde47c615354494cbff80/59c22f00597fbf473c4cbaeb/9e5e5f56f4b3af1b97604ee0b1f19f86/%E6%9E%97%E7%92%9F%E7%91%8B_10_20150223_8435-Good-1-Print%E8%BF%91%E5%8F%B0%E5%8C%97101%E6%9F%90%E8%99%95%E5%B8%82%E5%A0%B4-min_crop.jpg',
-      title : '聆聽',
-      subtitle : '漂流部落・真人圖書館・專題講座'
-    }
-    $scope.actions[3] = {
-      word_image: "https://trello-attachments.s3.amazonaws.com/59bbde47c615354494cbff80/59c60d208ce8059dfba9154a/4d4be07396a6428c268be79db9e45266/%E9%AB%94%E9%A9%97.png",
-      img : 'https://trello-attachments.s3.amazonaws.com/59bbde47c615354494cbff80/59c22f00597fbf473c4cbaeb/d9ad6efb6fb5fddfdc079212ba82b326/%E9%BB%83%E5%AD%90%E6%98%8E_%E7%84%A1%E5%AE%B6%E8%80%85_(5)-min.jpg',
-      title : '體驗',
-      subtitle : '城市狹縫旅行團'
-    }
-    $scope.actions[4] = {
-      word_image:"https://trello-attachments.s3.amazonaws.com/59bbde47c615354494cbff80/59c60d208ce8059dfba9154a/3fe3fdb4e67f4873372df3f82a93d8cd/%E5%9C%98%E7%B5%90.png",
-      img : 'https://trello-attachments.s3.amazonaws.com/59bbde47c615354494cbff80/59c22f00597fbf473c4cbaeb/59f56c2d651fc35656c79fa29edf029b/%E5%90%B3%E6%89%BF%E7%B4%98_%E7%94%9F%E6%B4%BB_(10)-min.jpg',
-      title : '團結',
-      subtitle : '遊行・宣言・立碑'
-    }
-    $scope.news = [];
-    $scope.cta = [];
-  }
 
   setContent = function($scope){
     // Set Custom Fields
@@ -221,9 +190,9 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
       }
       if($scope.lists[item.idList] == '紀念商品'){
         var attachment = item.attachments.filter(function(i){return i.isUpload})[0];
-        // if(attachment.url){
-        //   item.img = attachment.url;
-        // }
+        if(attachment && attachment.url){
+          item.img = attachment.url;
+        }
         item.description = $sce.trustAsHtml(converter.makeHtml(item.desc));
         $scope.products.push(item);
         return;
@@ -238,65 +207,6 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
         $scope.slides.push(item);
         return;
       }
-/*
-      if(item.shortLink == 'hYtEZvle'){
-        $scope.group = $sce.trustAsHtml(converter.makeHtml(item.desc));
-      }
-      if(item.shortLink == 'YZwxxY8I'){
-        $scope.actions[1].content = $sce.trustAsHtml(converter.makeHtml(item.desc));
-        if(item.attachments[0]){
-          $scope.actions[1].url = item.attachments[0].url;
-          $scope.actions[1].url_title = item.attachments[0].name;
-        }
-      }
-      if(item.shortLink == 'YskjbP0Y'){
-        $scope.actions[2].content = $sce.trustAsHtml(converter.makeHtml(item.desc));
-        if(item.attachments[0]){
-          $scope.actions[2].url = item.attachments[0].url;
-          $scope.actions[2].url_title = item.attachments[0].name;
-        }
-      }
-      if(item.shortLink == 'RjrcnwRC'){
-        $scope.actions[3].content = $sce.trustAsHtml(converter.makeHtml(item.desc));
-        if(item.attachments[0]){
-          $scope.actions[3].url = item.attachments[0].url;
-          $scope.actions[3].url_title = item.attachments[0].name;
-        }
-      }
-      if(item.shortLink == 'MqxlabVU'){
-        $scope.actions[4].content = $sce.trustAsHtml(converter.makeHtml(item.desc));
-        if(item.attachments[0]){
-          $scope.actions[4].url = item.attachments[0].url;
-          $scope.actions[4].url_title = item.attachments[0].name;
-        }
-      }
-      if(item.shortLink == 'fYFj3fUa'){
-        item.attachments.forEach(function(a){
-          $scope.cta.push({
-            url: a.url,
-            title: a.name
-          });
-        })
-      }
-      if(item.idList == '5b6afcba3c1a17066bf4ddbb'){
-        // 媒體報導
-        var news = {
-          author: "",
-          title : item.name,
-          source: "",
-          source_img: "",
-        }
-        item.attachments.forEach(function(a){
-          if(a.bytes){
-            news.img = a.url;
-          }else{
-            news.url = a.url;
-            news.source = a.name;
-          }
-        })
-        $scope.news.push(news);
-      }
-      */
     });
 
     $scope.actions.sort(function(x,y){
@@ -379,8 +289,6 @@ app.controller('MgCtrl',['$scope','$http','$sce',function($scope, $http, $sce){
   }
 
   init = function(){
-      console.log(1);
-      setStaticContent($scope);
       doRouter($scope);
   }
 
@@ -422,26 +330,31 @@ app.directive('scrollOnClick', function() {
 });
 
 postSetContent = function(){
-  window.interval = setInterval(function(){
-    if($('.section-slide .slide').length > 0){
-      $('main').fullpage({
-          // 參數設定[註1]
-          navigation: true, // 顯示導行列
-          navigationPosition: "right", // 導行列位置
-          onLeave: function(origin, destination, direction){
-            if($('[data-page='+destination+']').length > 0){
-              $('[data-page='+destination+']').animate({opacity: 1});
+  if(window.innerWidth > 768){
+    window.interval = setInterval(function(){
+      if($('.slide-section .slide').length > 0){
+        $('main').fullpage({
+            // 參數設定[註1]
+            responsiveWidth: 769,
+            responsiveSlides: true,
+            slidesNavigation: true,
+            navigation: true, // 顯示導行列
+            navigationPosition: "right", // 導行列位置
+            onLeave: function(origin, destination, direction){
+              if($('[data-page='+destination+']').length > 0){
+                $('[data-page='+destination+']').animate({opacity: 1});
+              }
+              if($('[data-page='+origin+']').length > 0 && direction=='up'){
+                $('[data-page='+origin+']').animate({opacity: 0});
+              }
+              console.log(origin);
+              console.log(destination);
+              console.log(direction);
             }
-            if($('[data-page='+origin+']').length > 0 && direction=='up'){
-              $('[data-page='+origin+']').animate({opacity: 0});
-            }
-            console.log(origin);
-            console.log(destination);
-            console.log(direction);
-          }
-        });
-      clearInterval(window.interval);
-      
-    }
-  },500);
+          });
+        clearInterval(window.interval);
+        
+      }
+    },500);
+  }
 }
