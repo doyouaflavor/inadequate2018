@@ -290,11 +290,17 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
   }
 }
 
-
+.slide-section h2{
+  margin: 20px 0;
+  padding-bottom: 0;
+}
 .slide-content{
   max-width: 600px;
 }
 @media screen and (max-width: 767px){
+  .slide-section h2{
+    font-size: 32px;
+  }
   .slide-item{
     display: none;
   }
