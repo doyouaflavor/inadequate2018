@@ -330,7 +330,7 @@ app.directive('scrollOnClick', function() {
 });
 
 postSetContent = function(){
-  if(window.innerWidth > 768){
+  // if(window.innerWidth > 768){
     window.interval = setInterval(function(){
       if($('.slide-section .slide').length > 0){
         $('main').fullpage({
@@ -338,7 +338,7 @@ postSetContent = function(){
             responsiveWidth: 769,
             responsiveSlides: true,
             slidesNavigation: true,
-            navigation: true, // 顯示導行列
+            navigation: false, // 顯示導行列
             navigationPosition: "right", // 導行列位置
             onLeave: function(origin, destination, direction){
               if($('[data-page='+destination+']').length > 0){
@@ -347,14 +347,17 @@ postSetContent = function(){
               if($('[data-page='+origin+']').length > 0 && direction=='up'){
                 $('[data-page='+origin+']').animate({opacity: 0});
               }
-              console.log(origin);
-              console.log(destination);
-              console.log(direction);
+              if(destination == 6 && direction=='down'){
+                $('#bg-people-5').animate({top: '-400px'});
+              }
+              if(destination == 5 && direction=='up'){
+                $('#bg-people-5').animate({top: '100px'});
+              }
             }
           });
         clearInterval(window.interval);
         
       }
     },500);
-  }
+  // }
 }

@@ -1,7 +1,8 @@
 /*@import url(//fonts.googleapis.com/earlyaccess/cwtexhei.css);*/
 @font-face {
     font-family: "wt";
-    src: local('王漢宗超明體繁'), url('font/wt004.ttf') format('truetype');
+    /*src: local('王漢宗超明體繁'), url('font/wt004.ttf') format('truetype');*/
+    src: local('王漢宗超明體繁');
 }
 *{
     font-family: Heiti TC, "微軟正黑體", Microsoft JhengHei, 'cwTeXHei', sans-serif;
@@ -13,11 +14,11 @@ p{
 }
 h1{
     font-size: 2.3em;
-    font-family: "wt";
+    font-family: "wt", 'LiHei Pro', cwTeXMing,  '新細明體', sans-serif;
     font-weight: normal;
 }
 h2 {
-    font-family: "wt";
+    font-family: "wt", 'LiHei Pro', cwTeXMing, '新細明體', sans-serif;
     /*color: var(--marked-orange-color);*/
     text-align: center;
     font-size: 42px;
@@ -27,12 +28,12 @@ h2 {
     font-weight: normal;
 }
 h3 {
-    font-family: "wt";
+    font-family: "wt", 'LiHei Pro', cwTeXMing, '新細明體', sans-serif;
     font-size: 1.5em;
     font-weight: normal;
 }
 h4 {
-  font-family: "wt";
+  font-family: "wt", 'LiHei Pro', cwTeXMing, '新細明體', sans-serif;
   display: inline-block;
   font-weight:bolder;
   margin-top: 20px;
@@ -119,8 +120,10 @@ body{
   bottom: 0;
 }
 #bg-people-5{
-  top: 0;
+  top: 100px;
   right: 0;
+  /*transform-origin: right top;*/
+  /*transform: scale(.6);*/
 }
 @media screen and (max-width: 767px){
   .section:not(header){
@@ -312,7 +315,6 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
 .action-section h3{
   font-size: 18px;
   text-align: left;
-  margin: 0;
   margin-bottom: 10px;
 }
 .action-section a{
@@ -359,7 +361,6 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
   margin: 0;
 }
 .product-section h3{
-  margin: 0;
   margin-bottom: 10px;
   font-size: 18px;
 
@@ -430,9 +431,12 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
   justify-content: center;
 }
 .member-content{
-  max-width: 230px;
+  width: 230px;
   text-align: left;
   margin: 0 10px;
+}
+.member-section h3{
+  margin-bottom: 0;
 }
 .member-content ul{
   padding-left: 0;
@@ -443,6 +447,9 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
 .member-content li a,
 .member-content li a:link{
   color: white;
+}
+.member-content:last-child {
+  margin-bottom: 20px;
 }
 .member-content:last-child h3:before{
   content: "";
@@ -546,6 +553,9 @@ header .arrow-symbol{
     }
     group-content>p{
         width: calc(100% - 40px);
+    }
+    .fp-controlArrow{
+      display: none;
     }
 }
 
