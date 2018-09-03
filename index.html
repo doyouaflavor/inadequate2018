@@ -27,7 +27,7 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-50648405-17', 'auto');
+  ga('create', 'UA-50648405-19', 'auto');
   ga('send', 'pageview');
 
 </script>
@@ -39,11 +39,11 @@
   <div class="page-bg" data-page="2" style="background-image: url(img/sec2_bg.jpg);opacity: 0;">
     <img src="img/sec2_people.png" alt="" class="bg-people" id="bg-people-2">
   </div>
-  <div class="page-bg" data-page="3" style="background-image: url(img/sec3_bg.jpg);opacity: 0;">
-    <img src="img/sec3_people.png" alt="" class="bg-people" id="bg-people-3">
-  </div>
-  <div class="page-bg" data-page="4" style="background-image: url(img/sec4_bg.jpg);opacity: 0;">
+  <div class="page-bg" data-page="3" style="background-image: url(img/sec4_bg.jpg);opacity: 0;">
     
+  </div>
+  <div class="page-bg" data-page="4" style="background-image: url(img/sec3_bg.jpg);opacity: 0;">
+    <img src="img/sec3_people.png" alt="" class="bg-people" id="bg-people-3">
   </div>
   <div class="page-bg" data-page="5" style="background-image: url(img/sec5_bg.jpg);opacity: 0;">
     <img src="img/sec5_people.png" alt="" class="bg-people" id="bg-people-5">
@@ -68,6 +68,12 @@
   </div>
 
 </div>
+<div class="section slide-section">
+  <div ng-repeat="item in slides" id="slide-item-{{$index}}" class="slide-item slide">
+    <h2>{{item.name}}</h2>
+    <div ng-bind-html="item.content" class="slide-content section-content"></div>
+  </div>
+</div>
 <div id="article" class="section article-section" >
   <div class="article-section-inner section-inner">
     <h2>{{article.name}}</h2>
@@ -79,12 +85,7 @@
   </div>
 
 </div>
-<div class="section slide-section">
-  <div ng-repeat="item in slides" id="slide-item-{{$index}}" class="slide-item slide">
-    <h2>{{item.name}}</h2>
-    <div ng-bind-html="item.content" class="slide-content section-content"></div>
-  </div>
-</div>
+
 <div class="section action-section">
   <h2>系列活動</h2>
   <div class="action-section-inner">
