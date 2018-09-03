@@ -1,9 +1,5 @@
 /*@import url(//fonts.googleapis.com/earlyaccess/cwtexhei.css);*/
-@font-face {
-    font-family: "wt";
-    /*src: local('王漢宗超明體繁'), url('font/wt004.ttf') format('truetype');*/
-    src: local('王漢宗超明體繁');
-}
+
 *{
     font-family: Heiti TC, "微軟正黑體", Microsoft JhengHei, 'cwTeXHei', sans-serif;
     box-sizing: border-box;
@@ -14,11 +10,11 @@ p{
 }
 h1{
     font-size: 2.3em;
-    font-family: "wt", 'LiHei Pro', cwTeXMing,  '新細明體', sans-serif;
+    font-family: "王漢宗超明體繁", 'LiHei Pro', cwTeXMing,  '新細明體', sans-serif;
     font-weight: normal;
 }
 h2 {
-    font-family: "wt", 'LiHei Pro', cwTeXMing, '新細明體', sans-serif;
+    font-family: "王漢宗超明體繁", 'LiHei Pro', cwTeXMing, '新細明體', sans-serif;
     /*color: var(--marked-orange-color);*/
     text-align: center;
     font-size: 42px;
@@ -28,12 +24,12 @@ h2 {
     font-weight: normal;
 }
 h3 {
-    font-family: "wt", 'LiHei Pro', cwTeXMing, '新細明體', sans-serif;
+    font-family: "王漢宗超明體繁", 'LiHei Pro', cwTeXMing, '新細明體', sans-serif;
     font-size: 1.5em;
     font-weight: normal;
 }
 h4 {
-  font-family: "wt", 'LiHei Pro', cwTeXMing, '新細明體', sans-serif;
+  font-family: "王漢宗超明體繁", 'LiHei Pro', cwTeXMing, '新細明體', sans-serif;
   display: inline-block;
   font-weight:bolder;
   margin-top: 20px;
@@ -400,7 +396,6 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
 .product-description {
   overflow: hidden;
   line-height: 1.2em;
-  height: 2.4em;
   padding: 10px;
 }
 .product-description p{
