@@ -17,7 +17,13 @@ if(window.innerWidth > 768){
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange
       },
-      playerVars: {rel: 0},
+      playerVars: {
+        disablekb: 1,
+        showinfo: 0, // deprecated after 25, sep, 2018
+        controls: 0,
+        rel: 0, // disabled after 25, sep, 2018
+        fs: 0
+      },
     });
   }
 

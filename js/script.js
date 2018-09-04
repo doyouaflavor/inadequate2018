@@ -335,7 +335,7 @@ postSetContent = function(){
       if($('.slide-section .slide').length > 0){
         $('main').fullpage({
             // 參數設定[註1]
-            responsiveWidth: 769,
+            responsiveWidth: 920,
             responsiveSlides: true,
             slidesNavigation: true,
             navigation: false, // 顯示導行列
