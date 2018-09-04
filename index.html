@@ -80,7 +80,7 @@
     <div class="article-section-content section-content" ng-bind-html="article.content">
     
     </div>
-    <a href="{{article.link}}" class="cta" target="_blank">手刀購票</a>
+    <a href="{{article.link}}" ng-click="clickGA('exhibition')" class="cta" target="_blank">手刀購票</a>
     
   </div>
 
@@ -91,7 +91,7 @@
   <div class="action-section-inner">
      <div ng-repeat="item in actions" id="action-section-{{$index}}" class="action-item">
       <h3 class="action-title">{{item.name}}</h3>
-      <a href="{{item.link}}" class="action-info" target="_blank">
+      <a href="{{item.link}}" ng-click="clickGA('action:'+item.name)" class="action-info" target="_blank">
         <h4 class="action-info-title">{{item.name}}</h4>
         <img src="{{item.img}}" alt="">
         <div class="action-title-info-wrapper">
@@ -101,7 +101,7 @@
     </div>
   </div>
   <div class="action-cta">
-    <a href="https://old.accupass.com/org/detail/r/1808240950361099517157/1/0" class="cta" target="_blank">所有活動資訊</a>
+    <a href="https://old.accupass.com/org/detail/r/1808240950361099517157/1/0" ng-click="clickGA('action: all')" class="cta" target="_blank">所有活動資訊</a>
   </div>
  </div>
 </div>
