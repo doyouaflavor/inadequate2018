@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-hant"  ng-app="page" scroll>
+<head>
+	<meta charset="UTF-8">
+	<title>貧窮人的台北</title>
+	<!-- <link rel="stylesheet" href="css/skeleton.css"> -->
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.angularjs.org/snapshot/angular.min.js"></script>
+    <script src="https://code.angularjs.org/snapshot/angular-sanitize.min.js"></script>
+    <script src="https://code.angularjs.org/snapshot/angular-animate.min.js"></script>
+<!--    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.js"></script>-->
+    <script src="https://cdn.rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.min.css" rel="stylesheet"  />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.js"></script>
+	  <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="這是一個希望消除貧窮的聯合倡議行動，透過看見、聆聽、體驗、團結，有系統的認識貧窮，一起解決貧窮的問題而不是解決貧窮的人。"/>
+  <meta property="og:url" content="https://4am.at.tw" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title" content="貧窮人的台北" />
+    <meta property="og:description" content="這是一個希望消除貧窮的聯合倡議行動，透過看見、聆聽、體驗、團結，有系統的認識貧窮，一起解決貧窮的問題而不是解決貧窮的人。" />
+    <meta property="og:image"  content="https://doyouaflavor.github.io/inadequate2018/img/fb.png" />
+    <meta property="fb:app_id"  content="144111119374573" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body  ng-controller="MgCtrl as ctl">
+<div class="bg-video-wrapper">
+  <div id="bg-video"></div>
+  <div class="page-bg" data-page="2" style="background-image: url(img/sec2_bg.jpg);opacity: 0;">
+    <img src="img/sec2_people.png" alt="" class="bg-people" id="bg-people-2">
+  </div>
+  <div class="page-bg" data-page="3" style="background-image: url(img/sec4_bg.jpg);opacity: 0;">
+    
+  </div>
+  <div class="page-bg" data-page="4" style="background-image: url(img/sec3_bg.jpg);opacity: 0;">
+    <img src="img/sec3_people.png" alt="" class="bg-people" id="bg-people-3">
+  </div>
+  <div class="page-bg" data-page="5" style="background-image: url(img/sec5_bg.jpg);opacity: 0;">
+    <img src="img/sec5_people.png" alt="" class="bg-people" id="bg-people-5">
+  </div>
+</div>
+<main>
+<header class="section">
+  <div class="header-inner">
+    <div class="header-4am img-wrapper"><img src="img/main_4am.png" alt=""></div>    
+    <div class="header-text-block">
+      <div class="header-line header-line-left"><img src="img/main_bar.png" alt=""></div>
+      <div class="header-text"><img src="img/main_small-text.png" alt="凌晨四點，你未看過的台北　和台北人"></div>
+      <div class="header-line header-line-right"><img src="img/main_bar.png" alt=""></div>
+    </div>
+    <div class="header-word img-wrapper"><img src="img/logo.png" alt=""></div>
+  </div>
+</header>
+<div id="intro" class="section intro-section">
+  <h2>{{intro.name}}</h2>
+  <div class="intro-section-content section-content" ng-bind-html="intro.content">
+    
+  </div>
+
+</div>
+<div class="section slide-section">
+  <div ng-repeat="item in slides" id="slide-item-{{$index}}" class="slide-item slide">
+    <h2>{{item.name}}</h2>
+    <div ng-bind-html="item.content" class="slide-content section-content"></div>
+  </div>
+</div>
+<div id="article" class="section article-section" >
+  <div class="article-section-inner section-inner">
+    <h2>{{article.name}}</h2>
+    <div class="article-section-content section-content" ng-bind-html="article.content">
+    
+    </div>
+    <a href="{{article.link}}" ng-click="clickGA('exhibition')" class="cta" target="_blank">手刀購票</a>
+    
+  </div>
+
+</div>
+
+<div class="section action-section">
+  <h2>系列活動</h2>
+  <div class="action-section-inner">
+     <div ng-repeat="item in actions" id="action-section-{{$index}}" class="action-item">
+      <h3 class="action-title">{{item.name}}</h3>
+      <a href="{{item.link}}" ng-click="clickGA('action:'+item.name)" class="action-info" target="_blank">
+        <h4 class="action-info-title">{{item.name}}</h4>
+        <img src="{{item.img}}" alt="">
+        <div class="action-title-info-wrapper">
+          <div ng-bind-html="item.content" class="action-content"></div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="action-cta">
+    <a href="https://old.accupass.com/org/detail/r/1808240950361099517157/1/0" ng-click="clickGA('action: all')" class="cta" target="_blank">所有活動資訊</a>
+  </div>
+ </div>
+</div>
+<div class="product-section section">
+  <h2>紀念商品</h2>
+  <div class="product-content-wrapper">
+    <div class="product-item" ng-repeat="item in products" >
+      <h3 class="product-title">{{item.name}}</h3>
+      <a target="_blank" href="{{item.link}}" ng-click="clickGA('product:'+item.name)" class="product-info">
+        <div class="product-img-wrapper">
+          <img src="{{item.img}}" alt="" class="product-img">
+        </div>
+        <div ng-bind-html="item.description" class="product-description"></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="member-section section">
+  <div class="member-content-wrapper">
+    <div class="member-content"  ng-repeat="item in members" id="member-item-{{$index}}">
+      <h3>{{item.name}}</h3>
+      <div ng-bind-html="item.content"></div>
+      
+    </div>
+  </div>
+  <footer>
+    Copyright © 2018 向貧窮者學習行動聯盟
+  </footer>
+</div>
+
+</main>
+
+
+
+<script src="js/script_develop.js"></script>
+<script src="js/youtube_bg.js"></script>
+
+</body>
+</html>
