@@ -427,7 +427,7 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
 
 
 .member-section {
-  background: var(--dark-bg-color);
+  background: white;
   position: relative;
 }
 .member-section h2{
@@ -444,6 +444,8 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
   text-align: left;
   margin: 0 10px;
   display: flex;
+  color:black;
+    
 }
 .member-content img{
   max-height: 36px;
