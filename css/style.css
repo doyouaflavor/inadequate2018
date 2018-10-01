@@ -425,7 +425,6 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
   width: 290px;
 }
 
-
 .member-section {
   background: white;
   position: relative;
@@ -479,7 +478,8 @@ inspired by https://codepen.io/philhoyt/pen/ujHzd
   color: var(--marked-orange-color);
 }
 #member-item-6{
-  width: auto;
+  width: 100%;
+  justify-content: center;
 }
 #member-item-6 h3{
   margin: 0;
