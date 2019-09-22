@@ -54,6 +54,32 @@ pre{
 li>p{
   margin: 0;
 }
+
+.navbar a {
+    background-color: cadetblue;
+    color: white;
+    font-size: 12pt;
+    font-weight: bold;
+    letter-spacing: 1pt;
+    text-decoration:none;
+    text-align: center;
+    padding: 12px;
+    top:0;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+}
+.navbar a:hover::after{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255,255,255,.2);
+    content: " ";
+}
+
+
 body{
   --light-bg-color: #f8f8f8;
    --dark-bg-color: #232323;
